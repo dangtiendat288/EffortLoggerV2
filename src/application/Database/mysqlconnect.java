@@ -20,6 +20,10 @@ import javafx.collections.ObservableList;
 
 public class mysqlconnect {
 	
+	//There is a computational function for average on the server;
+	//This is what it returns
+	public static String THE_AVERAGE_FROM_THE_SERVER = String.valueOf(getRandomFibonacci()); 
+	
 	static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 	static SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
 	
@@ -39,6 +43,30 @@ public class mysqlconnect {
         } catch (Exception e) {            
         	System.out.print(e.toString());
         	return null;
+        }
+    }
+    
+    public static int getRandomFibonacci() {
+        int n = (int) (Math.random() * 10) + 1; // Generates a random number between 1 and 10
+        return fibonacci(n);
+    }
+
+    private static int fibonacci(int n) {
+        if (n <= 0) {
+            System.out.println("Input should be a positive integer");
+            return -1; // or throw an exception
+        } else if (n == 1) {
+            return 0;
+        } else if (n == 2) {
+            return 1;
+        } else {
+            int a = 0, b = 1;
+            for (int i = 3; i <= n; i++) {
+                int temp = b;
+                b = a + b;
+                a = temp;
+            }
+            return b;
         }
     }
     
